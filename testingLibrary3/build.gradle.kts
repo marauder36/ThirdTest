@@ -8,7 +8,14 @@ android {
     namespace = "com.test.testinglibrary3"
     compileSdk = 33
 
+    testFixtures {
+        enable = true
+    }
+
     defaultConfig {
+        aarMetadata{
+            minCompileSdk = 24
+        }
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -41,6 +48,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+
 }
 
 afterEvaluate {
@@ -48,9 +58,9 @@ afterEvaluate {
         publications {
             create<MavenPublication>("maven") {
                 groupId = "com.github.marauder36"
-                artifactId = "ThirdTest"
-                version = "1.0.0"
-
+                artifactId = "testingLibrary3"
+                version = "1.0.3"
+                from(components["release"])
             }
         }
     }
